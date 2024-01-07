@@ -1,7 +1,17 @@
 import './colaborador.css'
 import { IoCloseCircle } from "react-icons/io5";
+import { RiHeartAddLine, RiHeartFill } from "react-icons/ri";
 
-const Colaborador = ({ colaborador, corDeFundo, aoDeletar }) => {
+const Colaborador = ({ colaborador, corDeFundo, aoDeletar, aoFavoritar }) => {
+    function favoritar (){
+        aoFavoritar(colaborador.id)
+    }
+
+    const propsFavorito = {
+        size: 35,
+        onClick: favoritar
+    }
+    
     return (
     <div className="colaborador">
         <IoCloseCircle 
@@ -15,6 +25,12 @@ const Colaborador = ({ colaborador, corDeFundo, aoDeletar }) => {
         <div className="rodape">
             <h4>{colaborador.nome}</h4>
             <h5>{colaborador.cargo}</h5>
+            <div className="favoritar">
+                {colaborador.favorito 
+                    ? <RiHeartFill {...propsFavorito} color='#FF0000'/> 
+                    : <RiHeartAddLine {...propsFavorito} color='#0fff3f'/> 
+                }
+            </div>
         </div>
     </div>)
 }
